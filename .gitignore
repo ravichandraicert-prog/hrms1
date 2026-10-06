@@ -1,0 +1,40 @@
+# ===== Logs =====
+*.log
+error_log.txt
+php_errors.log
+error.log
+
+# ===== Cookies / Browser profiles =====
+cookies.txt
+hrmstest.cookies
+*_cookie*.txt
+_chrome_profile/
+_chrome_stderr.log
+
+# ===== Helper / debugging / scratch scripts =====
+_cdp_test.js
+_chrome_test.js
+_raw_script.js
+_run_script.js
+_simulate_onclick.js
+_index_live*.html
+
+# ===== Database backups =====
+db-backup/
+
+# ===== Sensitive / runtime config =====
+# config/database.php contains DB credentials
+config/database.php
+
+# ===== Uploaded user content =====
+uploads/
+
+# ===== OS files =====
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ===== Editor / IDE =====
+.vscode/
+.idea/
+*.swp

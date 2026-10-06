@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Pulse Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .panel-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #191B1F;
+        }
+        
+        .pulse-rail {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .pulse-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+        }
+        
+        .pulse-name {
+            width: 140px;
+            font-size: 13px;
+            font-weight: 500;
+            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .pulse-timeline {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+            min-width: 0;
+        }
+        
+        .pulse-session {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            white-space: nowrap;
+        }
+        
+        .session-time {
+            font-size: 11px;
+            color: #666;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .session-bar {
+            color: #5B4EE5;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin: 0 2px;
+        }
+        
+        .session-bar.active {
+            color: #1F9E6D;
+        }
+        
+        .session-gap {
+            color: #999;
+            font-size: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .pulse-status {
+            width: 70px;
+            text-align: right;
+            font-size: 11px;
+            color: #666;
+            flex-shrink: 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .pulse-legend {
+            display: flex;
+            gap: 16px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e5e5;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #191B1F;
+        }
+        
+        .description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Pulse Dashboard Test</h1>
+    
+    <div class="test-section">
+        <h2>Before (Current Behavior)</h2>
+        <p class="description">Multiple rows for the same employee with multiple check-in/check-out sessions:</p>
+        
+        <div class="panel">
+            <div class="panel-head">
+                <div class="panel-title">Team pulse — today</div>
+            </div>
+            <div class="pulse-rail">
+                <div class="pulse-row">
+                    <div class="pulse-name">John Doe</div>
+                    <div class="pulse-timeline">
+                        <span class="session-time">09:05</span>
+                        <span class="session-bar">━━</span>
+                        <span class="session-time">12:30</span>
+                    </div>
+                    <div class="pulse-status">3h 25m</div>
+                </div>
+                <div class="pulse-row">
+                    <div class="pulse-name">John Doe</div>
+                    <div class="pulse-timeline">
+                        <span class="session-time">13:15</span>
+                        <span class="session-bar">━━</span>
+                        <span class="session-time">18:05</span>
+                    </div>
+                    <div class="pulse-status">4h 50m</div>
+                </div>
+                <div class="pulse-row">
+                    <div class="pulse-name">Jane Doe</div>
+                    <div class="pulse-timeline">
+                        <span class="session-time">09:20</span>
+                        <span class="session-bar">━━</span>
+                        <span class="session-time">17:45</span>
+                    </div>
+                    <div class="pulse-status">8h 25m</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>After (New Behavior)</h2>
+        <p class="description">One row per employee with all sessions consolidated into a timeline:</p>
+        
+        <div class="panel">
+            <div class="panel-head">
+                <div class="panel-title">Team pulse — today's attendance</div>
+            </div>
+            <div class="pulse-rail">
+                <div class="pulse-row">
+                    <div class="pulse-name">John Doe</div>
+                    <div class="pulse-timeline">
+                        <div class="pulse-session">
+                            <span class="session-time">09:05</span>
+                            <span class="session-bar">━━</span>
+                            <span class="session-time">12:30</span>
+                        </div>
+                        <span class="session-gap">   </span>
+                        <div class="pulse-session">
+                            <span class="session-time">13:15</span>
+                            <span class="session-bar">━━</span>
+                            <span class="session-time">18:05</span>
+                        </div>
+                    </div>
+                    <div class="pulse-status">8h 15m</div>
+                </div>
+                <div class="pulse-row">
+                    <div class="pulse-name">Jane Doe</div>
+                    <div class="pulse-timeline">
+                        <div class="pulse-session">
+                            <span class="session-time">09:20</span>
+                            <span class="session-bar">━━</span>
+                            <span class="session-time">17:45</span>
+                        </div>
+                    </div>
+                    <div class="pulse-status">8h 25m</div>
+                </div>
+                <div class="pulse-row">
+                    <div class="pulse-name">Bob Smith</div>
+                    <div class="pulse-timeline">
+                        <div class="pulse-session">
+                            <span class="session-time">08:45</span>
+                            <span class="session-bar active">━━</span>
+                            <span class="session-time">now</span>
+                        </div>
+                    </div>
+                    <div class="pulse-status">1h 30m</div>
+                </div>
+            </div>
+            <div class="pulse-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#1F9E6D;"></div>Currently Working</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#5B4EE5;"></div>Completed Session</div>
+                <div class="legend-item"><span style="font-family:'Courier New',monospace;font-size:11px;">09:00 ━━ 17:00</span>Timeline Format</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Key Features</h2>
+        <ul style="font-size: 14px; line-height: 1.6;">
+            <li><strong>One row per employee:</strong> Each employee appears only once regardless of multiple sessions</li>
+            <li><strong>Timeline visualization:</strong> Multiple check-in/check-out sessions shown as segments within the same row</li>
+            <li><strong>Clear time display:</strong> Check-in and check-out times clearly visible for each session</li>
+            <li><strong>Total duration:</strong> Working time calculated and displayed for each employee</li>
+            <li><strong>Status indication:</strong> Currently working sessions shown in green, completed sessions in purple</li>
+            <li><strong>Improved readability:</strong> Easy to understand complete attendance timeline at a glance</li>
+        </ul>
+    </div>
+</body>
+</html>

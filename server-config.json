@@ -1,0 +1,5 @@
+{
+  "url": "http://192.168.1.131/hrms1/",
+  "description": "HRMS Server Configuration",
+  "instructions": "Replace the URL above with your company server URL where HRMS is hosted. Example: http://your-server.com/hrms/ or http://192.168.1.100/HRMS/"
+}

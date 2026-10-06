@@ -1,0 +1,47 @@
+{
+  "name": "hrms-desktop",
+  "version": "2.0.1",
+  "description": "HRMS Desktop Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --win"
+  },
+  "author": "HRMS",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.hrms.desktop",
+    "productName": "HRMS",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+     "**/*",
+     "!dist/**",
+     "!node_modules/.cache/**"
+    ],
+    "extraResources": [
+      "assets/**"
+    ],
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "assets/tray.png"
+    },
+    "icon": "assets/tray.png",
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "perMachine": true
+    },
+    "portable": {
+      "artifactName": "HRMS-Portable.exe"
+    }
+  }
+}
