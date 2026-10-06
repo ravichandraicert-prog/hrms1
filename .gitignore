@@ -38,3 +38,9 @@ Desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# ===== Accidental stray file =====
+query('ALTER
+
+# ===== Electron bundled XAMPP/PHP binaries (keep on disk) =====
+electron/server/
